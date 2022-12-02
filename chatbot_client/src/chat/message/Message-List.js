@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useEffect, useMemo, useState,Component } from "react";
 
 import './Message-List.css';
 
 function MessageList() {
+
     return (
         <div id="chat-message-list">
+            
             <div className="message-row you-message">
                 <div className="message-content">
                     <div className="message-text">Ok then</div>
@@ -84,7 +86,9 @@ function MessageList() {
                     <div className="message-time">Apr 13</div>
                 </div>
             </div>
+            
         </div>
+        
     );
 }
 
