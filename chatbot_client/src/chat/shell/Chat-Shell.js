@@ -9,14 +9,15 @@ import ChatForm from '../chat-form/Chat-Form';
 import './Chat-Shell.css';
 
 function ChatShell() {
+    
     return (
         <div id="chat-container">
             <ChatSearch />
             <ConversationList />
             <NewConversation />
             <ChatTitle />
-            <MessageList />
-            <ChatForm />
+            <MessageList  />
+            <ChatForm  />
         </div>
     );
 }

@@ -1,13 +1,17 @@
 import React, {useEffect, useMemo, useState,Component } from "react";
 import ReactDOM from 'react-dom'
+import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import chatBotAPI from "../../api/axiosChatbot";
+import { updateChatbotCurrent, } from "../../reducers/chatbotSlice";
+import { MESSAGE_CLEAR } from "../../reducers/messSlice";
 import './Conversation-List.css';
 
     //const [loading, setLoading] = useState(true);
  
 export default function ConversationList() {
     const [botList, setBotList] = useState([]);
+    const dispatch = useDispatch();
     useEffect(() => {
       (async () => {
         try {
@@ -22,19 +26,30 @@ export default function ConversationList() {
         //setLoading(false);
       })();
     }, []);
-
+    const handleClick =bot =>(e)=>{
+        e.preventDefault();
+        const ChatbotCurrent = {
+            id: bot.id,
+            linkAvatar: bot.linkAvatar,
+            title: bot.title
+        }
+        dispatch(updateChatbotCurrent(ChatbotCurrent))
+        dispatch(MESSAGE_CLEAR("Hello, Can I help you?"))
+    }
     return (
         <div id="conversation-list">
             {
                 botList.map((bot,index)=>
-                    <div className="conversation " key={index}>
-                        <img src={bot.linkAvatar} alt={bot.title} />
-                        <div className="title-text">{bot.title}</div>
-                        <div className="created-date">Apr 16</div>
-                        <div className="conversation-message">
-                           Prices: {bot.prices}
+                    
+                        <div className="conversation " key={index} onClick={handleClick(bot)}>
+                            <img src={bot.linkAvatar} alt={bot.title}  />
+                            <div className="title-text">{bot.title}</div>
+                            <div className="created-date">Apr 16</div>
+                            <div className="conversation-message">
+                            Prices: {bot.prices}
+                            </div>
                         </div>
-                    </div>
+                    
                 )
                 
             }
