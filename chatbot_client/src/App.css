@@ -15,10 +15,7 @@ html {
   font-size: 10px;
 }
 
-body {
-  display: grid;
-  place-items: center center;
-}
+
 
 ::-webkit-scrollbar {
   display: none;

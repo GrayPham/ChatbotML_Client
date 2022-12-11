@@ -11,14 +11,17 @@ import './Chat-Shell.css';
 function ChatShell() {
     
     return (
-        <div id="chat-container">
-            <ChatSearch />
-            <ConversationList />
-            <NewConversation />
-            <ChatTitle />
-            <MessageList  />
-            <ChatForm  />
+        <div className='chat-shell-element'>
+            <div id="chat-container" >
+                <ChatSearch />
+                <ConversationList />
+                <NewConversation />
+                <ChatTitle />
+                <MessageList  />
+                <ChatForm  />
+            </div>
         </div>
+        
     );
 }
 

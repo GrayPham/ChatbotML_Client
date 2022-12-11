@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useState,Component } from "react";
 import ReactDOM from 'react-dom'
-import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import chatBotAPI from "../../api/axiosChatbot";
 import { updateChatbotCurrent, } from "../../reducers/chatbotSlice";
 import { MESSAGE_CLEAR } from "../../reducers/messSlice";
@@ -12,6 +12,8 @@ import './Conversation-List.css';
 export default function ConversationList() {
     const [botList, setBotList] = useState([]);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const user = localStorage.getItem("user");
     useEffect(() => {
       (async () => {
         try {
@@ -28,6 +30,7 @@ export default function ConversationList() {
     }, []);
     const handleClick =bot =>(e)=>{
         e.preventDefault();
+        if(user){
         const ChatbotCurrent = {
             id: bot.id,
             linkAvatar: bot.linkAvatar,
@@ -35,6 +38,10 @@ export default function ConversationList() {
         }
         dispatch(updateChatbotCurrent(ChatbotCurrent))
         dispatch(MESSAGE_CLEAR("Hello, Can I help you?"))
+        }
+        else {
+            navigate("/login")
+        }
     }
     return (
         <div id="conversation-list">

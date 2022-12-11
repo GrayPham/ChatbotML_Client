@@ -13,3 +13,9 @@
   background: #FFF;
   border-radius: 10px;
 }
+.chat-shell-element{
+
+  display: grid;
+  place-items: center center;
+
+}
