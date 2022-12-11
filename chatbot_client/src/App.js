@@ -7,7 +7,7 @@ import store from './reducers/store';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './component/login/Login';
 
-import HeaderComponent from './component/header/HeaderComponent';
+
 import Navbar from './component/header/Navbar.jsx';
 import SideMenu from './component/menu/SideMenu';
 
