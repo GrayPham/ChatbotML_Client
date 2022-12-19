@@ -6,7 +6,9 @@ import MenuItem from "./MenuItem";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
-
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {signOut} from "../../reducers/userSlice"
 /**
  * @author
  * @function SideMenu
@@ -26,13 +28,33 @@ export const menuItems = [
     to: `/content`,
     iconClassName: <FaIcons.FaEnvelopeOpenText />,
   },
-  { name: "Design", to: `/design`, iconClassName: <IoIcons.IoIosPaper /> },
-  { name: "Login / Register", to: `/login`, iconClassName: <IoIcons.IoMdLogIn /> },
+  { name: "Design", to: `/design`, iconClassName: <IoIcons.IoIosPaper /> }
 ];
 
 const SideMenu = (props) => {
   const [inactive, setInactive] = useState(false);
 
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    
+    //dispatch(signOut)
+    localStorage.removeItem("user");
+    localStorage.removeItem("access_token");
+    setCustomer(null);
+  }
+
+  const [customer, setCustomer] = useState();
+  
+
+  useEffect(() => {
+    
+    const items = JSON.parse(localStorage.getItem('user'));
+    if (items) {
+      setCustomer(items);
+      console.log(items);
+        
+    }
+    }, []);
   useEffect(() => {
     if (inactive) {
       removeActiveClassFromSubMenu();
@@ -107,43 +129,62 @@ const SideMenu = (props) => {
                 if (inactive) {
                   setInactive(false);
                 }
+                else{
+                  setInactive(true);
+                }
               }}
             />
           ))}
+          {
+            customer?(
+              <li>
+                <div className={`menu-item`} onClick= {handleLogout}>
+                  <div className="menu-icon">
+                    {<IoIcons.IoMdLogIn />}
+                  </div>
+                  <span>Logout</span>
+                </div>
+              </li>
+            ):(
+              <li>
+                <Link className={`menu-item`}  
+                  exact to={"/login"}
+                  onClick={(e) => {
+                  if (inactive) {
+                    setInactive(false);
+                  }
+                  else{
+                    setInactive(true);
+                  }
+                }}
+                  >
+                {console.log("Login", customer)}
+                  <div className="menu-icon">
+                    {<IoIcons.IoMdLogIn />}
+                  </div>
+                  <span>Login / Register</span>
+                </Link>
+              </li>
+            )
+          }
 
-          {/* <li>
-            <a className="menu-item">
-              <div className="menu-icon">
-                <i class="bi bi-speedometer2"></i>
-              </div>
-              <span>Dashboard</span>
-            </a>
-          </li>
-          <MenuItem
-            name={"Content"}
-            subMenus={[{ name: "Courses" }, { name: "Videos" }]}
-          />
-          <li>
-            <a className="menu-item">
-              <div className="menu-icon">
-                <i class="bi bi-vector-pen"></i>
-              </div>
-              <span>Design</span>
-            </a>
-          </li> */}
         </ul>
       </div>
-
-      <div className="side-menu-footer">
-        <div className="avatar">
-          <img src={user} alt="user" />
-        </div>
-        <div className="user-info">
-          <h5>Rizwan Khan</h5>
-          <p>rizwankhan@gmail.com</p>
-        </div>
-      </div>
+      {
+        customer?(
+          <div className="side-menu-footer">
+            <div className="avatar">
+              <img src={user} alt="user" />
+            </div>
+            <div className="user-info">
+              <h5>Username: {customer.username}</h5>
+              <i>{customer.email}</i>
+            </div>
+            </div>
+          ):<div></div>
+    }
     </div>
+
   );
 };
 

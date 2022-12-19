@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState,Component } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
 import './Message-List.css';
@@ -15,7 +15,7 @@ function MessageList() {
                     mess.type === "bot"? (
                         <div className="message-row other-message">
                             <div className="message-content">
-                                <img src={require("../../images/profiles/daryl.png")} alt={chatbot.title} />
+                                <img  src={chatbot.linkAvatar} style={{width: '48px', height:'48px',}} alt={chatbot.title} />
                                 <div className="message-text">
                                     {mess.message}
                                 </div>

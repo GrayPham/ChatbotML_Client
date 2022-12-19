@@ -4,14 +4,16 @@ export const chatSlice = createSlice({
     initialState:{
         id: "637f394aa90bdae5ab96b6dd",
         linkAvatar: "https://image.thanhnien.vn/w1024/Uploaded/2022/juzagt/2022_09_23/2-2190.jpg",
-        title: "Chat Bot Free"
+        title: "Chat Bot Free",
+        price: 0
+        
     },
     reducers:{
         updateChatbotCurrent:(state,message)=>{
             state.id = message.payload.id;
             state.linkAvatar = message.payload.linkAvatar;
             state.title = message.payload.title;
-
+            state.price = message.payload.price;
             return state;
         },
 

@@ -1,7 +1,6 @@
 import {
     createAsyncThunk,
     createSlice,
-    isAnyOf
   } from "@reduxjs/toolkit";
 import userAPI from "../api/user";
 
@@ -19,24 +18,19 @@ const userSlice = createSlice({
         settings: {},
     },
     reducers: {
-        signOut: (state) => {
+        signOut: (state,action) => {
+          console.log('logged out');
           state.user = null;
           state.access_token = null;
-          state.cart = null;
+
           localStorage.removeItem("user");
           localStorage.removeItem("access_token");
         }
     },
-    extraReducers: (builder) => {
-        builder.addMatcher(isAnyOf(login.fulfilled), (state, action) => {
-          state.current = action.payload;
-        });
-        builder.addMatcher(isAnyOf(login.rejected), (state, action) => {
-          console.log(action.payload);
-        });
-    }
+
 });
-export default userSlice;
+
 export const {
   signOut
 } = userSlice.actions;
+export default userSlice;

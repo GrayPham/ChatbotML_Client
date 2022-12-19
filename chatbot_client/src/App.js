@@ -1,37 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React  from 'react';
 
 import { Provider } from "react-redux";
 import './App.css';
 import ChatShell from './chat/shell/Chat-Shell';
 import store from './reducers/store';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Login from './component/login/Login';
+import {PayPalScriptProvider} from "@paypal/react-paypal-js"
 
 
-import Navbar from './component/header/Navbar.jsx';
-import SideMenu from './component/menu/SideMenu';
+
+
+import Login from './page/Login/Login';
 
 function App() {
-  const [inactive, setInactive] = useState(false);
-  return (
-    <Provider store={store}>
-    
-    <BrowserRouter>
-      <SideMenu
-          onCollapse={(inactive) => {
-            console.log(inactive);
-            setInactive(inactive);
-          }}
-      />
-      { <Routes>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/" element={<ChatShell/>}/>
-        <Route path="" element={<ChatShell/>}/>
-      </Routes> }
-    </BrowserRouter>
-          
-    </Provider>
+  //const [inactive, setInactive] = useState(false);
 
+  return (
+    <PayPalScriptProvider options={{"client-id": "AQqeyAy_q2XNF_CXieKGIbWLVKudTmvGQy77XjjR0zynwI8ByZf17YeoLBZYUoexosXJSqbcGhJ7O5Zp" }}>
+      <Provider store={store}>
+
+        <BrowserRouter>
+
+          <Routes>
+            <Route path="" element={<ChatShell/>}/>
+            <Route path="/login" element={<Login/>}/>
+          </Routes> 
+        </BrowserRouter>
+
+      </Provider>
+    </PayPalScriptProvider>
   );
 }
 

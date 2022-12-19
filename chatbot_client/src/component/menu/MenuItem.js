@@ -1,6 +1,5 @@
-import React, { useRef, useState } from "react";
+import React, {  useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-
 /**
  * @author
  * @function MenuItem
@@ -32,9 +31,12 @@ const MenuItem = (props) => {
               <NavLink to={menu.to}>{menu.name}</NavLink>
             </li>
           ))}
+          
         </ul>
       ) : null}
+      
     </li>
+
   );
 };
 
