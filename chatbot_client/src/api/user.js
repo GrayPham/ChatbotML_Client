@@ -13,6 +13,11 @@ const userAPI = {
    
     const url = `user/userfull?userid=${userid}`;
     return axiosClient.get(url);
+  },
+  getPaymentDetail(userid,paymentid){
+   
+    const url = `user/paymentdetails?userid=${userid}&paymentid=${paymentid}`;
+    return axiosClient.get(url);
   }
 };
 

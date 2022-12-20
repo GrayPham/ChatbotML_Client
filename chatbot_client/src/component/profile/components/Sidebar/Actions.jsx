@@ -43,7 +43,7 @@ export default function Actions() {
       <Button w="full" variant="outline" onClick={handleComeBackHome}>
         View Another Chatbot
       </Button>
-      <InputGroup>
+      {/* <InputGroup>
         <Textarea
           ref={profileUrl}
           type="url"
@@ -61,7 +61,7 @@ export default function Actions() {
             </svg>
           </Button>
         </InputRightAddon>
-      </InputGroup>
+      </InputGroup> */}
     </VStack>
   )
 }
