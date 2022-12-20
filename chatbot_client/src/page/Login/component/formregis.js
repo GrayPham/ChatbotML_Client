@@ -28,13 +28,13 @@ export default function FormRegis({loginState}){
         <div class="form-container sign-up-container">
                 <form onSubmit={handleSubmit(submitFormLogin)}>
                 <h1>Create Account</h1>
-                    <input
+                    <input className='inputlogin'
                         type="text"
                         placeholder="Username"
                         required
                         {...register("username",{ required: true })}
                     />
-                    <input
+                    <input className='inputlogin'
                         type="password"
                         placeholder="Password"
                         required
@@ -42,7 +42,7 @@ export default function FormRegis({loginState}){
                         name="password"
                         {...register("password",{ required: true })}
                     />
-                    <input
+                    <input className='inputlogin'
                         type="password"
                         placeholder="Re-Password"
                         required
@@ -50,27 +50,27 @@ export default function FormRegis({loginState}){
                         name="Re-Password"
                         {...register("Re-Password",{ required: true })}
                     />
-                    <input
+                    <input className='inputlogin'
                         type="text"
                         placeholder="Email"
                         required
                         {...register("email",{ required: true })}
                     />
-                    <input
+                    <input className='inputlogin'
                         type="text"
                         placeholder="Address"
                         required
                         {...register("address",{ required: true })}
                     />
-                    <input
+                    <input className='inputlogin'
                         type="text"
                         placeholder="Phone"
                         required
                         {...register("phone",{ required: true })}
                     />
-                    <input type="phone" placeholder="Phone" />
                     
-                    <button  >Sign Up</button>
+                    
+                    <button  className='button_Login' >Sign Up</button>
                 </form>
         </div>
     )

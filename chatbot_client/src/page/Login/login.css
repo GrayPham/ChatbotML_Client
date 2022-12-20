@@ -44,7 +44,7 @@ a {
 	margin: 15px 0;
 }
 
-button {
+.button_Login {
 	border-radius: 20px;
 	border: 1px solid #FF4B2B;
 	background-color: #FF4B2B;
@@ -57,15 +57,15 @@ button {
 	transition: transform 80ms ease-in;
 }
 
-button:active {
+.button_Login:active {
 	transform: scale(0.95);
 }
 
-button:focus {
+.button_Login:focus {
 	outline: none;
 }
 
-button.ghost {
+.button_Login.ghost {
 	background-color: transparent;
 	border-color: #FFFFFF;
 }
@@ -81,7 +81,7 @@ form {
 	text-align: center;
 }
 
-input {
+.inputlogin {
 	background-color: #eee;
 	border: none;
 	padding: 12px 15px;

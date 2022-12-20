@@ -1,44 +1,73 @@
-import PropTypes from 'prop-types';
-import { useMemo } from 'react';
-// @mui
-import { CssBaseline } from '@mui/material';
-import { ThemeProvider as MUIThemeProvider, createTheme, StyledEngineProvider } from '@mui/material/styles';
-//
-import palette from './palette';
-import shadows from './shadows';
-import typography from './typography';
-import GlobalStyles from './globalStyles';
-import customShadows from './customShadows';
-import componentsOverride from './overrides';
+import { extendTheme } from '@chakra-ui/react'
 
-// ----------------------------------------------------------------------
-
-ThemeProvider.propTypes = {
-  children: PropTypes.node,
-};
-
-export default function ThemeProvider({ children }) {
-  const themeOptions = useMemo(
-    () => ({
-      palette,
-      shape: { borderRadius: 6 },
-      typography,
-      shadows: shadows(),
-      customShadows: customShadows(),
+export const theme = extendTheme({
+  styles: {
+    global: () => ({
+      body: {
+        bg: "linear-gradient(to right, #57c1eb 0%,#246fa8 100%)",
+      },
     }),
-    []
-  );
-
-  const theme = createTheme(themeOptions);
-  theme.components = componentsOverride(theme);
-
-  return (
-    <StyledEngineProvider injectFirst>
-      <MUIThemeProvider theme={theme}>
-        <CssBaseline />
-        <GlobalStyles />
-        {children}
-      </MUIThemeProvider>
-    </StyledEngineProvider>
-  );
-}
+  },
+  colors: {
+    brand: {
+      blue: '#4164e3',
+      cadet: '#8998a8',
+      dark: '#243156',
+      gray: '#a0acb9',
+      green: '#36c537',
+      light: '#e9ebee',
+      pure: '#fafafb',
+      slate: '#77889a',
+      white: '#fcfdfe',
+      yellow: '#ed9b13',
+    },
+  },
+  components: {
+    Button: {
+      variants: {
+        solid: {
+          p: '6',
+          color: 'white',
+          bg: 'brand.blue',
+          _hover: { bg: 'brand.blue' },
+          _active: { bg: 'brand.blue' },
+          _focus: { boxShadow: 'none' },
+        },
+        outline: {
+          bg: 'transparent',
+          borderWidth: '1px',
+          color: 'brand.cadet',
+          borderColor: 'brand.light',
+          _hover: { bg: 'brand.white' },
+          _active: { bg: 'brand.light' },
+          _focus: { boxShadow: 'none' },
+        },
+        ghost: {
+          color: 'white',
+          bg: 'rgba(0, 0, 0, 0.25)',
+          _hover: { bg: 'rgba(0, 0, 0, 0.25)' },
+          _active: { bg: 'rgba(0, 0, 0, 0.35)' },
+          _focus: { boxShadow: 'none' },
+        },
+        link: {
+          p: '0',
+          height: 'full',
+          bg: 'transparent',
+          color: 'gray.500',
+          rounded: 'none',
+          _active: { bg: 'brand.light' },
+          _focus: { boxShadow: 'none' },
+        },
+      },
+    },
+    Tabs: {
+      baseStyle: {
+        tab: {
+          _focus: {
+            boxShadow: 'none',
+          },
+        },
+      },
+    },
+  },
+})

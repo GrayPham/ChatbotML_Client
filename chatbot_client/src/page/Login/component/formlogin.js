@@ -38,13 +38,13 @@ export default function Formlogin(loginState){
                 <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <span>or use your account</span>
-            <input
+            <input className='inputlogin'
                 type="text"
                 placeholder="Username"
                 required
                 {...register("username",{ required: true })}
             />
-            <input
+            <input className='inputlogin'
 
             type="password"
             placeholder="Password"
@@ -54,7 +54,7 @@ export default function Formlogin(loginState){
             {...register("password",{ required: true })}
             />
             <a href="#">Forgot your password?</a>
-            <button type="submit">Sign In</button>
+            <button className='button_Login' type="submit">Sign In</button>
         </form>
     </div>
     )
