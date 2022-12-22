@@ -1,17 +1,17 @@
-import { INPUT_SUCCESS } from "../reducers/messSlice";
 import axiosClient from "./axiosClient";
 
 
 const messAPI = {
-    sendMessage(message, dispatch) {
+    sendMessage(message,botIDdata, userIDdata, firstCheckData) {
       const url = `mess/chatmessages`;
       
         try{
           const body = { 
 
-            userID:"637e409a8105440a2aefef2d",
-            botID:"637f394aa90bdae5ab96b6dd",
-            message: message 
+            userID:userIDdata,
+            botID:botIDdata,
+            message: message ,
+            firstCheck:firstCheckData
           };
 
             const res = axiosClient.post(url,body);

@@ -8,7 +8,7 @@ function Data({userLogin}) {
     {
       id: 1,
       name: 'ChatBot',
-      value: 2,
+      value: userLogin.payment.length,
       color: 'yellow',
     }
   

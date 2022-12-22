@@ -3,6 +3,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import userAPI from '../../../api/user';
 import "../login.css"
 
 export default function FormRegis({loginState}){
@@ -13,8 +14,8 @@ export default function FormRegis({loginState}){
     const dispatch = useDispatch();
     const submitFormLogin = async (values) => {
             console.log(values);
-            //const response = await dispatch(login(values));
-            // console.log("test Dang ki",response);
+            const response = await userAPI.register(values);
+            alert("Sign Up Success",response);
             // if(response.payload){
             // navigate("/")
             // }
@@ -48,7 +49,7 @@ export default function FormRegis({loginState}){
                         required
                         autoComplete="on"
                         name="Re-Password"
-                        {...register("Re-Password",{ required: true })}
+                        {...register("re_password",{ required: true })}
                     />
                     <input className='inputlogin'
                         type="text"

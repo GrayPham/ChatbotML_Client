@@ -138,6 +138,22 @@ const SideMenu = (props) => {
           {
             customer?(
               <li>
+              <Link className={`menu-item`}  
+                  exact to={"/profile"}
+                  onClick={(e) => {
+                    if (inactive) {
+                      setInactive(false);
+                    }
+                    else{
+                      setInactive(true);
+                    } 
+                  }}
+                >
+                    <div className="menu-icon">
+                    {<IoIcons.IoIosPaper />}
+                  </div> 
+                  <span>Profile</span>
+                </Link>
                 <div className={`menu-item`} onClick= {handleLogout}>
                   <div className="menu-icon">
                     {<IoIcons.IoMdLogIn />}

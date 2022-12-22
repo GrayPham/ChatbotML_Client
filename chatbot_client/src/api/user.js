@@ -5,6 +5,10 @@ const userAPI = {
     const url = `user/login`;
     return axiosClient.post(url,data);
   },
+  register(data){
+    const url = `user/register`;
+    return axiosClient.post(url,data);
+  },
   PaypalPaypment(data){
     const url = `payment/payment`;
     return axiosClient.post(url,data);
@@ -19,6 +23,7 @@ const userAPI = {
     const url = `user/paymentdetails?userid=${userid}&paymentid=${paymentid}`;
     return axiosClient.get(url);
   }
+
 };
 
 export default userAPI;
