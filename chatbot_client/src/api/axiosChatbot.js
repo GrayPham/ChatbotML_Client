@@ -9,7 +9,8 @@ const chatBotAPI = {
   AddChatbot(chat) {
     const url = `chat/createchat`;
     return axiosClient.post(url, chat);
-  }
+  },
+
 };
 
 export default chatBotAPI;

@@ -8,7 +8,7 @@
   
   #chat-form {
     display: grid;
-    grid: 51px / 32px 1fr;
+    grid: 51px / 50px 2fr;
     align-content: center;
     align-items: center;
     grid-gap: 15px;
@@ -27,3 +27,6 @@
     border-radius: 6px;
     font-size: 1.4rem;
   }
+.imgsentChatbot {
+
+}

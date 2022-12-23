@@ -13,6 +13,7 @@ function ChatForm() {
     const chatbot = useSelector((state)=>state.chat)
     const user = JSON.parse( localStorage.getItem("user"));
     const dispatch = useDispatch();
+    const [chatting, setChating] = useState(false);
     //  Function that handles user submission
       const handleClick = async (e) => {
       const code = e.keyCode || e.which;
@@ -22,20 +23,54 @@ function ChatForm() {
         console.log("User", user);
         try {
             if(message !=="" || message !== undefined){
+              const firstCheck = messageList.length === 1 ? true : false;
               if(user !== undefined && user !== null){
-                const firstCheck = messageList.length === 1 ? true : false;
-                const mess = await messAPI.sendMessage(message,chatbot.id,user.id, firstCheck);
+                if(chatting === false){
+                  
+                  setChating(true)
+
+                  if( chatbot.price != "0"){
+                    const mess = await messAPI.sendMessage(message,chatbot.id,user.id, firstCheck);
+                    dispatch(INPUT_SUCCESS(message));
+                    setChating(false)
+    
+                    dispatch(MESSAGE_SUCCESS(mess.message));
+                    setMessage("")
+                  }
+                  else
+                  {
+                    const mess = await messAPI.chatfree(message,chatbot.id,user.id, firstCheck);
+                    dispatch(INPUT_SUCCESS(message));
+                    setChating(false)
+    
+                    dispatch(MESSAGE_SUCCESS(mess.message));
+                    setMessage("")
+                  }
+                  
+
+                }
+
                 
-                dispatch(INPUT_SUCCESS(message));
-                
-                  console.log("mess here",mess);
-                 dispatch(MESSAGE_SUCCESS(mess.message));
               }
                else{
-                dispatch(INPUT_SUCCESS(message));
+
+                if( chatbot.price == "0"){
+                  
+                  const mess = await messAPI.chatfree(message,chatbot.id,"", firstCheck);
+
+                  dispatch(INPUT_SUCCESS(message));
+                  setChating(false)
+  
+                  dispatch(MESSAGE_SUCCESS(mess.message));
+                  setMessage("")
+                }
+                else {
+                  dispatch(INPUT_SUCCESS(message));
                 
-                const mess = "You are using the free botchat!";
-                 dispatch(MESSAGE_SUCCESS(mess));
+                  const mess = "You need using the free botchat!";
+                  dispatch(MESSAGE_SUCCESS(mess));
+                }
+
                }
             }
             else{
@@ -50,7 +85,7 @@ function ChatForm() {
           } catch (error) {
             localStorage.removeItem("user");
             localStorage.removeItem("access_token");
-            alert(error.response.data.detail);
+            alert(error);
             navigator("/")
           }
         //sendMessage(message);
@@ -61,7 +96,10 @@ function ChatForm() {
     };
     return (
         <div id="chat-form" >
-            <img src={require("../../images/icons/icons8-send.png")}  alt="Add Attachment" />
+            <div className='imgsentChatbot'>
+              <img src={require("../../images/icons/icons8-send.png")}  alt="Add Attachment" />
+            </div>
+            
             <input type="text" 
                 placeholder="type a message" 
                 value={message}

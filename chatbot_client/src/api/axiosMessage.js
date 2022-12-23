@@ -23,6 +23,27 @@ const messAPI = {
           console.log(err); 
         }
       
+    },
+    chatfree(message,botIDdata, userIDdata, firstCheckData) {
+      const url = `mess/chatfree`;
+      console.log(url);
+      try{
+        const body = { 
+
+          userID:userIDdata,
+          botID:botIDdata,
+          message: message ,
+          firstCheck:firstCheckData
+        };
+
+          const res = axiosClient.post(url,body);
+          return res;
+          //dispatch(INPUT_SUCCESS( res.message));
+
+      }
+      catch (err) {
+        console.log(err); 
+      }
     }
 }
 export default messAPI;

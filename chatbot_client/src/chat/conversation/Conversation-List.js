@@ -31,7 +31,8 @@ export default function ConversationList() {
     }, []);
     const handleClick =bot =>(e)=>{
         e.preventDefault();
-        if(user){
+        console.log("Price", bot)
+        if(user || bot.prices === "0"){
         const ChatbotCurrent = {
             id: bot.id,
             linkAvatar: bot.linkAvatar,
@@ -62,15 +63,7 @@ export default function ConversationList() {
                 )
                 
             }
-            {/* active or not */}
-            <div className="conversation active"> 
-                <img src={require("../../images/profiles/daryl.png")} alt="Daryl Duckmanton" />
-                <div className="title-text">Daryl Duckmanton</div>
-                <div className="created-date">Apr 16</div>
-                <div className="conversation-message">
-                    This is a message
-                </div>
-            </div>
+
             
         </div>
     );

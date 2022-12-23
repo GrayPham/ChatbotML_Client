@@ -4,14 +4,14 @@ import { Provider } from "react-redux";
 import './App.css';
 import ChatShell from './chat/shell/Chat-Shell';
 import store from './reducers/store';
-import { BrowserRouter, Route,Switch, Routes, Router } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import {PayPalScriptProvider} from "@paypal/react-paypal-js"
 
 
 
 
 import Login from './page/Login/Login';
-import CoverProfile from './component/profile/components/Cover';
+
 import MainProfile from './component/profile/components/Main';
 import { ChakraProvider } from '@chakra-ui/react';
 import { theme } from './theme';
@@ -41,7 +41,6 @@ function App() {
                 <Route path="" element={<ChatShell/>}/>
                 <Route path="/profile" element={<MainProfile />}/>
                 <Route path="/login" element={<Login/>}/>
-
           </Routes>
         </BrowserRouter>
         </ChakraProvider>

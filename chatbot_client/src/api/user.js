@@ -13,6 +13,10 @@ const userAPI = {
     const url = `payment/payment`;
     return axiosClient.post(url,data);
   },
+  checkPayment(userid,chatbotid){
+    const url = `payment/checkpayment`;
+    return axiosClient.get(url,userid,chatbotid);
+  },
   getUserFull(userid){
    
     const url = `user/userfull?userid=${userid}`;

@@ -2,8 +2,8 @@ import {createSlice} from '@reduxjs/toolkit';
 export const chatSlice = createSlice({
     name: 'chatbot',
     initialState:{
-        id: "637f394aa90bdae5ab96b6dd",
-        linkAvatar: "https://image.thanhnien.vn/w1024/Uploaded/2022/juzagt/2022_09_23/2-2190.jpg",
+        id: "63a5de891f45485cc78a0098",
+        linkAvatar: "https://www.shutterstock.com/image-vector/cute-robot-character-mascot-vector-600w-2028708701.jpg",
         title: "Chat Bot Free",
         price: 0
         
