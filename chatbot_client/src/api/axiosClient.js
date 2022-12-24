@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 const axiosClient = axios.create({
-  baseURL: "https://chatbotbuilding.azurewebsites.net/api/",
+  baseURL: "https://chatbotai08.azurewebsites.net/api/",
   headers: {
     "content-type": "application/json",
   },
