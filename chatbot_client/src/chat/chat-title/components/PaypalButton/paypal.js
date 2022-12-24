@@ -4,9 +4,9 @@ import products from "../../products.json";
 import userAPI from '../../../../api/user';
 import { PayPalButtons } from '@paypal/react-paypal-js';
 import { useSelector } from 'react-redux';
-export default function Paypal(){
+export default function Paypal({chatbot}){
     const [paidFor,setPaidFor] = useState(false)
-    const chatbot = useSelector((state)=>state.chat)
+    
     const [error,setError] = useState(null)
     
     const [user, setUser] = useState();
@@ -52,7 +52,7 @@ export default function Paypal(){
         // Display error message
         alert(error)
     }
-    if(chatbot.price === 0){
+    if(chatbot.prices === "0"){
         return ;
     }
     return (
