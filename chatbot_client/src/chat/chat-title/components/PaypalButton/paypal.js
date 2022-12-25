@@ -83,9 +83,9 @@ export default function Paypal({chatbot}){
                    return action.order.create({
                         purchase_units: [
                             {
-                                description: chatbot.title,
+                                description: AeonaBot,
                                 amount:{
-                                    value:  chatbot.price
+                                    value:  20
                                 }
                             }
                         ]
