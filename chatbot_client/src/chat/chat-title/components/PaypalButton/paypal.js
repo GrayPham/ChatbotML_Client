@@ -52,7 +52,7 @@ export default function Paypal({chatbot}){
         // Display error message
         alert(error)
     }
-    if(chatbot.prices === "0"){
+    if(chatbot.prices === "0" || chatbot.prices === undefined){
         return ;
     }
     return (
